@@ -19,7 +19,16 @@ project-root/
 │   ├── etl_claims.py
 │   └── analysis_attribution_quality.py
 │
+├── docs/
+│   ├── assumptions.md
+│   ├── technical_appendix.md
+│   ├── portfolio_summary.md
+│   ├── future_enhancements.md
+│   ├── data_dictionary.md
+│   └── limitations.md
+│
 └── README.md
+
 Prerequisites
 Python 3.8+
 
