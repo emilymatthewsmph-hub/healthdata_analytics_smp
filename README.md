@@ -101,27 +101,15 @@ Code
 │        _table.csv        │        │       _provider.csv      │
 └──────────────────────────┘        └──────────────────────────┘
 
-## Data
-
-The analysis uses a synthetic claims file with the following expected columns:
-
-- `claim_id`: Unique claim identifier
-- `bene_id`: Beneficiary (patient) identifier
-- `provider_npi`: Rendering or attributed provider NPI
-- `date_of_service`: Date of service (YYYY-MM-DD)
-- `hcpcs_code`: Procedure/HCPCS code
-- `dx_code`: Primary diagnosis code (ICD-10-like)
-- `place_of_service`: Place of service code
-- `specialty`: Provider specialty (e.g., INTERNAL_MEDICINE, FAMILY_PRACTICE)
-- `state`: Provider state
-- `allowed_amount`: Allowed amount for the claim
-- `paid_amount`: Paid amount for the claim
-
 > Note: The dataset is synthetic and contains no real PHI.
+
+## Additional documentation
+
+- [Assumptions](docs/assumptions.md)
+- [Technical Appendix](docs/technical_appendix.md)
+- [Portfolio Summary](docs/portfolio_summary.md)
+- [Future Enhancements](docs/future_enhancements.md)
+
 
 ---
 
-Install dependencies:
-
-```bash
-pip install pandas numpy
