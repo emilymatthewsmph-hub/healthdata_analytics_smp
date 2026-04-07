@@ -1,0 +1,52 @@
+Future Enhancements
+This document outlines potential extensions to expand the project’s analytical depth, engineering rigor, and real‑world applicability.
+
+Data Enhancements
+Multi‑year synthetic claims
+
+Chronic condition flags (HCCs)
+
+Dual‑eligible indicators
+
+Risk scores (HCC RAF)
+
+Expanded HCPCS and diagnosis code sets
+
+Additional provider attributes (specialty, geography)
+
+Analytics Enhancements
+Additional quality measures (BP control, statin use, screenings)
+
+Provider benchmarking and peer grouping
+
+Outlier detection for cost and utilization
+
+Trend analysis across time periods
+
+Risk‑adjusted performance metrics
+
+Episode‑based cost measures
+
+Engineering Enhancements
+Modularize code into reusable functions
+
+Add unit tests for attribution and measure logic
+
+Add logging and error handling
+
+Add configuration file (YAML)
+
+Add Dockerfile for containerized execution
+
+Implement CI/CD workflows for automated testing
+
+Cloud Enhancements
+Snowflake SQL version of the pipeline
+
+Databricks notebook version
+
+Power BI dashboard using outputs
+
+Integration with cloud storage (S3, Azure Blob, GCS)
+
+Parameterized pipelines using Azure Data Factory or AWS Glue
