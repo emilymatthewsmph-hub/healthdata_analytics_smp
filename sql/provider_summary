@@ -1,0 +1,19 @@
+-- Provider-level payment and utilization summary
+SELECT
+    provider_npi,
+    specialty,
+    state,
+    COUNT(DISTINCT claim_id) AS total_claims,
+    COUNT(DISTINCT bene_id) AS total_beneficiaries,
+    SUM(allowed_amount)      AS total_allowed,
+    AVG(allowed_amount)      AS avg_allowed,
+    SUM(paid_amount)         AS total_paid,
+    CASE
+        WHEN SUM(allowed_amount) > 0
+        THEN SUM(paid_amount) / SUM(allowed_amount)
+        ELSE NULL
+    END AS paid_to_allowed_ratio
+FROM claims
+WHERE allowed_amount > 0
+GROUP BY provider_npi, specialty, state
+ORDER BY total_allowed DESC;
