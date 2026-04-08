@@ -63,7 +63,7 @@ FINAL PRODUCT WORKFLOW
 ---
 
 
-##Folder Structure
+## Folder Structure
 Code
 project-root/
 │
@@ -167,7 +167,7 @@ Code
 
 > Note: The dataset is synthetic and contains no real PHI.
 
-### SQL Component
+## SQL Component
 
 In addition to the Python-based workflow, this repository includes SQL scripts that mirror the core analytics logic. These examples demonstrate how the same ETL, attribution, and quality measure steps can be implemented in SQL-based data warehouse environments (e.g., Snowflake, Databricks SQL, SQL Server).
 
@@ -190,7 +190,7 @@ In addition to the Python-based workflow, this repository includes SQL scripts t
 | Outputs                     | CSVs in `outputs/` via `to_csv()`                         | Views or tables via `CREATE TABLE AS` / `INSERT INTO`       |
 
 
-### Additional documentation
+## Additional documentation
 
 - [Assumptions](docs/assumptions.md)
 - [Technical Appendix](docs/technical_appendix.md)
