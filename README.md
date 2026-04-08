@@ -1,4 +1,4 @@
-Project Overview
+##Project Overview
 
 This project implements an end‑to‑end healthcare claims analytics workflow using synthetic Medicare‑like data. It includes data generation, ETL processing, provider‑level summarization, beneficiary attribution, and calculation of a diabetes A1c quality measure. The workflow is fully reproducible and organized to support transparent, modular analysis.
 
@@ -63,7 +63,7 @@ FINAL PRODUCT WORKFLOW
 ---
 
 
-Folder Structure
+##Folder Structure
 Code
 project-root/
 │
@@ -92,7 +92,7 @@ Required packages:
 Code
 pip install pandas numpy
 
-How to Run This Project
+#How to Run This Project
 1. Generate Synthetic Claims Data
 Creates a 1,000‑row synthetic Medicare‑like claims dataset.
 
