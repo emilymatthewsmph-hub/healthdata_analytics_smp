@@ -2,6 +2,67 @@ Project Overview
 
 This project implements an end‑to‑end healthcare claims analytics workflow using synthetic Medicare‑like data. It includes data generation, ETL processing, provider‑level summarization, beneficiary attribution, and calculation of a diabetes A1c quality measure. The workflow is fully reproducible and organized to support transparent, modular analysis.
 
+---
+
+## Final Product Workflow (508‑Friendly)
+
+This workflow summarizes the end-to-end analytics pipeline, from synthetic claims input through ETL, attribution, and quality measurement. It is designed to be fully accessible and screen‑reader friendly.
+
+FINAL PRODUCT WORKFLOW
+
+1. Synthetic Claims Input  
+   - File: data/synthetic_claims.csv  
+   - Medicare-like structure (bene_id, provider_npi, dx_code, hcpcs_code, allowed_amount, date_of_service)
+
+        |
+        v
+
+2. ETL Pipeline (Python or SQL)  
+   - Clean and standardize fields  
+   - Parse dates and numeric amounts  
+   - Remove invalid or zero-allowed claims  
+   - Output: outputs/provider_summary.csv
+
+        |
+        v
+
+3. Provider Summary  
+   - total_claims  
+   - unique_bene_count  
+   - total_allowed  
+   - avg_allowed  
+   - paid_to_allowed_ratio
+
+        |
+        v
+
+4. Attribution Logic  
+   - Plurality-of-visits model  
+   - Tie-break by provider NPI  
+   - Output: outputs/attribution_table.csv
+
+        |
+        v
+
+5. Quality Measure Logic (Diabetes A1c)  
+   - Identify diabetic beneficiaries (dx_code starts with E11)  
+   - Identify A1c tests (HCPCS 83036, 83037)  
+   - Compute numerator and denominator  
+   - Output: outputs/quality_measure_provider.csv
+
+        |
+        v
+
+6. Final Outputs (Analytics-Ready Tables)  
+   - provider_summary.csv  
+   - attribution_table.csv  
+   - quality_measure_provider.csv  
+
+**Alt-text:** This diagram shows a linear workflow for an end-to-end healthcare claims analytics pipeline. The workflow begins with a synthetic claims input file. The data flows into an ETL pipeline that cleans and standardizes the claims. The next step produces a provider summary with metrics such as total claims and total allowed amounts. The workflow then applies attribution logic to assign beneficiaries to providers using a plurality-of-visits model. After attribution, the workflow calculates a diabetes A1c quality measure by identifying diabetic beneficiaries and A1c test claims. The final outputs include three CSV files: provider_summary.csv, attribution_table.csv, and quality_measure_provider.csv.
+
+---
+
+
 Folder Structure
 Code
 project-root/
