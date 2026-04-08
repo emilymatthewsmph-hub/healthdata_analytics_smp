@@ -112,7 +112,14 @@ Code
 
 > Note: The dataset is synthetic and contains no real PHI.
 
-## Additional documentation
+### SQL Component
+
+To reflect the SQL-heavy nature of many healthcare analytics roles, this repository includes a SQL implementation of the provider summary logic. This example demonstrates how the ETL and aggregation steps can be executed directly in SQL-based data warehouse environments such as Snowflake, Databricks, or SQL Server.
+
+- `sql/provider_summary_example.sql` — SQL version of the provider-level claims summarization workflow
+
+
+### Additional documentation
 
 - [Assumptions](docs/assumptions.md)
 - [Technical Appendix](docs/technical_appendix.md)
