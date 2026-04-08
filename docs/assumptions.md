@@ -47,3 +47,8 @@ Numerator = diabetic beneficiaries with ≥1 A1c test.
 Measure is calculated at the provider level.
 
 No risk adjustment or exclusions are applied.
+
+SQL A1C quality measure assumptions
+Diabetes: dx_code starts with 'E11'
+
+A1c: hcpcs_code in ('83036', '83037')
