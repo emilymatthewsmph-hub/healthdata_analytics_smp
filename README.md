@@ -8,26 +8,20 @@ project-root/
 │
 ├── data/
 │   └── synthetic_claims.csv
-│
 ├── outputs/
 │   ├── provider_summary.csv
 │   ├── attribution_table.csv
 │   └── quality_measure_provider.csv
-│
 ├── src/
 │   ├── generate_synthetic_claims.py
 │   ├── etl_claims.py
 │   └── analysis_attribution_quality.py
-│
-├── docs/
-│   ├── assumptions.md
-│   ├── technical_appendix.md
-│   ├── portfolio_summary.md
-│   ├── future_enhancements.md
-│   ├── data_dictionary.md
-│   └── limitations.md
-│
+├── sql/
+│   ├── provider_summary_example.sql
+│   ├── attribution_logic.sql
+│   └── a1c_quality_measure.sql
 └── README.md
+
 
 Prerequisites
 Python 3.8+
@@ -114,9 +108,25 @@ Code
 
 ### SQL Component
 
-To reflect the SQL-heavy nature of many healthcare analytics roles, this repository includes a SQL implementation of the provider summary logic. This example demonstrates how the ETL and aggregation steps can be executed directly in SQL-based data warehouse environments such as Snowflake, Databricks, or SQL Server.
+In addition to the Python-based workflow, this repository includes SQL scripts that mirror the core analytics logic. These examples demonstrate how the same ETL, attribution, and quality measure steps can be implemented in SQL-based data warehouse environments (e.g., Snowflake, Databricks SQL, SQL Server).
+
+- `sql/provider_summary_example.sql` — Provider-level payment and utilization summary.
+- `sql/attribution_logic.sql` — Beneficiary attribution to providers using plurality-of-visits logic.
+- `sql/a1c_quality_measure.sql` — Provider-level diabetes A1c testing rate calculation.
+
 
 - `sql/provider_summary_example.sql` — SQL version of the provider-level claims summarization workflow
+| Component                    | Python Implementation                                      | SQL Implementation                                           |
+|-----------------------------|------------------------------------------------------------|-------------------------------------------------------------|
+| Data source                 | `pandas.read_csv("data/synthetic_claims.csv")`            | `SELECT * FROM claims`                                      |
+| ETL / cleaning              | `clean_claims()` function (types, dates, filters)         | `CAST`, `WHERE`, and basic validation in `SELECT`/`WHERE`   |
+| Provider summary            | `summarize_provider_payments()` with `groupby().agg()`    | `GROUP BY provider_npi, specialty, state` with aggregates   |
+| Visit definition            | Filter non-null `provider_npi` / E/M HCPCS in DataFrame   | `WHERE provider_npi IS NOT NULL` and HCPCS filters          |
+| Attribution logic           | `attribute_beneficiaries()` with `groupby` + `rank()`     | `ROW_NUMBER() OVER (PARTITION BY bene_id ORDER BY ...)`     |
+| Diabetes identification     | `dx_code.str.startswith("E11")`                           | `WHERE CAST(dx_code AS VARCHAR) LIKE 'E11%'`                |
+| A1c test identification     | `hcpcs_code.isin({"83036","83037"})`                      | `WHERE hcpcs_code IN ('83036','83037')`                     |
+| Quality measure calculation | Merge/join DataFrames, compute rate in Python             | CTEs + `JOIN`s + calculated rate in final `SELECT`          |
+| Outputs                     | CSVs in `outputs/` via `to_csv()`                         | Views or tables via `CREATE TABLE AS` / `INSERT INTO`       |
 
 
 ### Additional documentation
